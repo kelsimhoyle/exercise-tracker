@@ -4,8 +4,8 @@
 	"description": "A REST API project, part of Free Code Camp's curriculum",
 	"main": "server.js",
 	"scripts": {
-		"start": "node server.ts",
-		"serve": "nodemon -x ts-node server.ts",
+		"start": "node server.js",
+		"serve": "nodemon server.js",
 		"build": "tsc",
 		"postinstall": "npm run build",
 		"watch-node": "nodemon server.js",
