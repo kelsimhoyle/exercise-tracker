@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 app.use(cors());
 app.use(express.static("public"));
-app.get("/", (req: Request, res: any) => {
+app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html")
 });
 
