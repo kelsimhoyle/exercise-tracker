@@ -1,5 +1,4 @@
 const express = require("express");
-import { Request, Response } from "express";
 const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
@@ -15,7 +14,7 @@ app.use(bodyParser.json());
 
 app.use(cors());
 app.use(express.static("public"));
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (req: Request, res: any) => {
   res.sendFile(__dirname + "/views/index.html")
 });
 
