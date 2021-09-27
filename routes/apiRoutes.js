@@ -45,12 +45,11 @@ module.exports = function (app) {
                 db.User.findOneAndUpdate({ _id: req.params._id },
                     { $push: { log: exercise }, $inc: { count: 1 } }, (err, user) => {
                         if (err) console.error(err)
-                        let ex = exercise.date.toDateString();
 
                         const result = {
                             username: user.username,
                             description: exercise.description,
-                            duration: parseInt(exercise.duration),
+                            duration: exercise.duration,
                             _id: user._id,
                             date: exercise.date.toDateString(),
                         }
@@ -113,7 +112,7 @@ module.exports = function (app) {
 
                         let currentLog = {
                             description: log.description,
-                            duration: parseInt(log.duration),
+                            duration: log.duration,
                             date: log.date.toDateString()
                         }
                         result.log.push(currentLog);
