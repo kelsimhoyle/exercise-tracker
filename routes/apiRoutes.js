@@ -30,13 +30,12 @@ module.exports = function (app) {
     });
 
     app.post("/api/users/:_id/exercises", (req, res) => {
-        const date = req.body.date.legnth > 0 ? Date.parse(req.body.date) : null;
-        const d = date ? new Date(date) : new Date()
+        const date = req.body.date.legnth > 0 ? new Date(req.body.date) : new Date();
 
         const exData = {
             description: req.body.description,
             duration: parseInt(req.body.duration),
-            date: d
+            date: date.toDateString()
         };
 
         const newExercise = new db.Exercise(exData);
@@ -49,11 +48,11 @@ module.exports = function (app) {
                         let ex = exercise.date.toDateString();
 
                         const result = {
-                            _id: user._id,
                             username: user.username,
-                            date: ex,
+                            description: exercise.description,
                             duration: parseInt(exercise.duration),
-                            description: exercise.description
+                            _id: user._id,
+                            date: exercise.date.toDateString(),
                         }
                         res.json(result)
                     })
