@@ -50,11 +50,11 @@ module.exports = function (app) {
                         let ex = exercise.date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "2-digit", year: "numeric" });
 
                         const result = {
+                            _id: user._id,
                             username: user.username,
-                            description: exercise.description,
-                            duration: exercise.duration,
                             date: ex.split(", ").join(" "),
-                            _id: user._id
+                            duration: exercise.duration,
+                            description: exercise.description
                         }
                         res.json(result)
                     })
@@ -101,11 +101,14 @@ module.exports = function (app) {
 
             .then((user) => {
                 let result = {
+                    _id: user._id,
                     username: user.username,
                     count: user.count,
-                    _id: user._id,
                     log: []
                 };
+
+                if (from) result.from = from;
+                if (to) result.to = to;
 
                 if (user.log) {
                     user.log.forEach(log => {
@@ -118,6 +121,8 @@ module.exports = function (app) {
                         result.log.push(currentLog);
                     })
                 }
+
+
                 res.json(result)
             })
     });
