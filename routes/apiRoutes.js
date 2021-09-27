@@ -30,7 +30,7 @@ module.exports = function (app) {
     });
 
     app.post("/api/users/:_id/exercises", (req, res) => {
-        const date = req.body.date.legnth > 0 ? new Date(req.body.date) : new Date();
+        const date = req.body.date > 0 ? new Date(req.body.date) : new Date();
 
         const exData = {
             description: req.body.description,
