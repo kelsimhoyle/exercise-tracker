@@ -103,7 +103,7 @@ module.exports = function (app) {
                 let result = {
                     _id: user._id,
                     username: user.username,
-                    count: user.count,
+                    count: user.count ? user.count : 0,
                     log: []
                 };
 
