@@ -6,10 +6,7 @@
 	"scripts": {
 		"start": "node server.js",
 		"serve": "nodemon server.js",
-		"postinstall": "npm run build",
-		"watch-node": "nodemon server.js",
-		"watch-ts": "tsc -w",
-		"deploy": "git add . && git commit -m Heroku && git push heroku main"
+		"watch-node": "nodemon server.js"
 	},
 	"dependencies": {
 		"cors": "^2.8.5",
