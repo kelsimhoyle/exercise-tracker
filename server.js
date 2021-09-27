@@ -2,15 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
-const bodyParser = require("body-parser");
 
 require("dotenv").config();
 
 const MONGO_URI = process.env.MONGO_URI
 
-app.use(bodyParser.urlencoded({ extended: "false" }));
-app.use(bodyParser.json());
-
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use(cors());
 app.use(express.static("public"));
@@ -20,7 +18,7 @@ app.get("/", (req, res) => {
 
 
 // Routes
-require("./routes/apiRoutes")(app);
+require("./routes/apiRoutes.js")(app);
 
 mongoose.connect(MONGO_URI, { useNewUrlParser: true }, () => {
 const listener = app.listen(process.env.PORT || 3000, () => {

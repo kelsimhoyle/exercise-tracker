@@ -6,14 +6,12 @@
 	"scripts": {
 		"start": "node server.js",
 		"serve": "nodemon server.js",
-		"build": "tsc",
 		"postinstall": "npm run build",
 		"watch-node": "nodemon server.js",
 		"watch-ts": "tsc -w",
 		"deploy": "git add . && git commit -m Heroku && git push heroku main"
 	},
 	"dependencies": {
-		"body-parser": "^1.19.0",
 		"cors": "^2.8.5",
 		"dotenv": "^8.2.0",
 		"express": "^4.16.4",
