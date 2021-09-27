@@ -47,12 +47,12 @@ module.exports = function (app) {
                 db.User.findOneAndUpdate({ _id: req.params._id },
                     { $push: { log: exercise }, $inc: { count: 1 } }, (err, user) => {
                         if (err) console.error(err)
-                        let ex = exercise.date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "2-digit", year: "numeric" });
+                        let ex = exercise.date.toDateString("en-US", { weekday: "short", month: "short", day: "2-digit", year: "numeric" });
 
                         const result = {
                             _id: user._id,
                             username: user.username,
-                            date: ex.split(", ").join(" "),
+                            date: ex,
                             duration: exercise.duration,
                             description: exercise.description
                         }
@@ -116,7 +116,7 @@ module.exports = function (app) {
                         let currentLog = {
                             description: log.description,
                             duration: log.duration,
-                            date: log.date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "2-digit", year: "numeric" }).split(", ").join(" ")
+                            date: log.date.toDateString("en-US", { weekday: "short", month: "short", day: "2-digit", year: "numeric" })
                         }
                         result.log.push(currentLog);
                     })
