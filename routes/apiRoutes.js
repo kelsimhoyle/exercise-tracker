@@ -32,11 +32,10 @@ module.exports = function (app) {
     app.post("/api/users/:_id/exercises", (req, res) => {
         const date = req.body.date.legnth > 0 ? Date.parse(req.body.date) : null;
         const d = date ? new Date(date) : new Date()
-        d.toLocaleDateString();
 
         const exData = {
             description: req.body.description,
-            duration: req.body.duration,
+            duration: parseInt(req.body.duration),
             date: d
         };
 
@@ -47,7 +46,7 @@ module.exports = function (app) {
                 db.User.findOneAndUpdate({ _id: req.params._id },
                     { $push: { log: exercise }, $inc: { count: 1 } }, (err, user) => {
                         if (err) console.error(err)
-                        let ex = exercise.date.toDateString("en-US", { weekday: "short", month: "short", day: "2-digit", year: "numeric" });
+                        let ex = exercise.date.toDateString();
 
                         const result = {
                             _id: user._id,
