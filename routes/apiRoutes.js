@@ -52,7 +52,7 @@ module.exports = function (app) {
                             _id: user._id,
                             username: user.username,
                             date: ex,
-                            duration: exercise.duration,
+                            duration: parseInt(exercise.duration),
                             description: exercise.description
                         }
                         res.json(result)
@@ -106,16 +106,16 @@ module.exports = function (app) {
                     log: []
                 };
 
-                if (from) result.from = from;
-                if (to) result.to = to;
+                if (from) result.from = from.toDateString();
+                if (to) result.to = to.toDateString();
 
                 if (user.log) {
                     user.log.forEach(log => {
 
                         let currentLog = {
                             description: log.description,
-                            duration: log.duration,
-                            date: log.date.toDateString("en-US", { weekday: "short", month: "short", day: "2-digit", year: "numeric" })
+                            duration: parseInt(log.duration),
+                            date: log.date.toDateString()
                         }
                         result.log.push(currentLog);
                     })
